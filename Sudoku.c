@@ -8,7 +8,7 @@
 
 #define N 9
 #define S ((int)sqrt(N))
-#define K 50
+#define K 40
 
 typedef struct 
 {
@@ -102,9 +102,6 @@ int fillRemaining(int i)
 
     if (mat[row][col].value != 0) 
     {
-        printSudoku(mat);
-        Sleep(5);
-        system("cls");
         return fillRemaining(i + 1);
     }
 
@@ -113,9 +110,6 @@ int fillRemaining(int i)
         if (CheckIfSafe(row, col, num)) 
         {
             mat[row][col].value = num;
-            printSudoku(mat);
-            Sleep(5);
-            system("cls");
             if (fillRemaining(i + 1)) 
             {
                 return 1;
@@ -178,9 +172,9 @@ int solve_sudoku(Cell mat[N][N], int row, int col)
             {
                 return solve_sudoku(mat, row, col + 1);
             }
-            else if 
+            else if ((row + 1) < N) 
             {
-                ((row + 1) < N) return solve_sudoku(mat, row + 1, 0);
+                return solve_sudoku(mat, row + 1, 0);
             }
             else 
             {
